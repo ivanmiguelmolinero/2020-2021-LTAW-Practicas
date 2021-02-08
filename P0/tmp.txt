@@ -1,0 +1,4 @@
+Este es un fichero temporal
+que vamos a borrar
+Para aprender a eliminar
+ficheros del repo...
