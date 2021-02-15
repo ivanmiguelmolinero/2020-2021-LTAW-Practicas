@@ -17,7 +17,7 @@
 # Ejercicio 2
 
 * a) 
-```
+```html
  <!DOCTYPE universidad SYSTEM "universidad.dtd">
  <Universidad>
     <Escuela>
@@ -35,3 +35,21 @@
     </Escuela>
 </Universidad>
 ```
+# Ejercicio 3
+
+* a)
+```html
+<!DOCTYPE generic SYSTEM "generic.dtd">
+<Generic>
+    <Contenedor>Texto 5
+        <Contenedor>
+            <Contendenor>
+                <Contendedor>Texto 1</Contenedor>
+                Texto 2
+            </Contenedor>
+            Texto 3
+            <Contenedor>Texto 4</Contenedor>
+        </Contenedor>
+    </Contenedor>
+</Generic>
+
