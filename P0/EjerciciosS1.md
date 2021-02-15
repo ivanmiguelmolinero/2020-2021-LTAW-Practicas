@@ -10,9 +10,9 @@
 
 * e) 8 de apertura y 8 de cierre.
 
-* f)
+* f) ![](Ejercicio1fS1.jpg)
 
-* g)
+* g) ![](Ejercicio1gS1.jpg)
 
 # Ejercicio 2
 
@@ -52,4 +52,7 @@
         </Contenedor>
     </Contenedor>
 </Generic>
+```
 
+# Ejercicio 4
+![](Ejercicio4S1.jpg)
