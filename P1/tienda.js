@@ -5,6 +5,16 @@ const fs = require('fs');
 
 const PUERTO = 9000;
 
+const type = {
+    "plain": "text/plain",
+    "html": "text/html",
+    "css": "text/css",
+    "js": "text/javascript",
+    "gif": "image/gif",
+    "jpg": "image/jpg",
+    "mp3": "audio/mpeg3"
+};
+
 const server = http.createServer((req, res)=>{
     console.log("Petición recibida!");
 
@@ -21,10 +31,12 @@ const server = http.createServer((req, res)=>{
     if (url.pathname == '/') {
         path += '/main.html';
     } else if (url.pathname == '/favicon.ico') {
-        path += '/Imágenes/deathstar.png';
+        path += '/Imagenes/deathstar.png';
         content_type = "image/png";
     } else {
         path += url.pathname;
+        let ext = path.split('.')[2];
+        content_type = type[ext];
     }
 
     //-- Generar la respusta en función de las variables
@@ -42,8 +54,11 @@ const server = http.createServer((req, res)=>{
         } else {
             res.statusCode = 404;
             res.statusMessage = "Not Found";
-            res.setHeader('Content-Type', 'text/plain');
-            res.write("Este NO es el camino");
+            path = './front-end/error404.html';
+            console.log("Leyendo archivo", path + "...");
+            data = fs.readFileSync(path);
+            res.setHeader('Content-Type', 'text/html');
+            res.write(data);
             res.end()
         }
     })
