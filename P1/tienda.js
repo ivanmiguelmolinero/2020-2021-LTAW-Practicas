@@ -12,6 +12,7 @@ const type = {
     "js": "text/javascript",
     "gif": "image/gif",
     "jpg": "image/jpg",
+    "png": "image/png",
     "mp3": "audio/mpeg3"
 };
 
