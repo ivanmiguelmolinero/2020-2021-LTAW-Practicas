@@ -9,3 +9,27 @@
     height: 100px;
     cursor: pointer;
 }
+
+#banner{
+    size: inherit;
+    text-align: center;
+}
+
+.contenido{
+    margin-top: 20px;
+    text-align: center;
+}
+
+#producto{
+    text-align: center;
+    height: 150px;
+    margin-right: 50px;
+}
+
+#producto:hover{
+    height: 200px;
+}
+
+#text_product{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
