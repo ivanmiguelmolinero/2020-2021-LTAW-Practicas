@@ -1,0 +1,40 @@
+.header{
+    background-color: black;
+    height: 100px;
+    text-align: center;
+    color: whitesmoke;
+}
+
+body{
+    background-image: url(../Imagenes/fondo404.jpg);
+    background-image: no-repeat;
+    background-image: fixed;
+    background-image: center;
+}
+
+#logo{
+    height: 100px;
+    cursor: pointer;
+}
+
+.producto{
+    position: absolute;
+    height: 500px;
+    border-style: outset;
+    border-width: 5px;
+    border-color: silver;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.Información{
+    color: springgreen;
+    background-color: rgba(0, 0, 0, 0.548);
+    position: absolute;
+    margin-left: 290px;
+    margin-top: 0px;
+    border-style: ridge;
+    border-width: 5px;
+    border-radius: 20px;
+    padding: 5px;
+    font-size: 20px;
+}
