@@ -5,6 +5,13 @@
     color: whitesmoke;
 }
 
+body{
+    background-image: url(../Imagenes/fondo404.jpg);
+    background-image: no-repeat;
+    background-image: fixed;
+    background-image: center;
+}
+
 #logo{
     height: 100px;
     cursor: pointer;
@@ -13,6 +20,7 @@
 #banner{
     size: inherit;
     text-align: center;
+    background-color: #1f1f1f;
 }
 
 .contenido{
@@ -20,16 +28,23 @@
     text-align: center;
 }
 
-#producto{
+.producto{
     text-align: center;
     height: 150px;
     margin-right: 50px;
+    opacity: 100%;
 }
 
-#producto:hover{
+.producto:hover{
     height: 200px;
+    cursor: pointer;
 }
 
-#text_product{
+.boton{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+    color: white;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
 }

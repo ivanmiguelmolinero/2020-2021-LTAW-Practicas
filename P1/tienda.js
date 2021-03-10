@@ -39,7 +39,6 @@ const server = http.createServer((req, res)=>{
         content_type = "image/png";
     } else {
         pathfile = url.pathname.split('/');
-        console.log(pathfile);
         folder.forEach((carpeta) =>{
             if ((pathfile[pathfile.length - 2]) == carpeta) {
                 folder_exists = true;
@@ -49,7 +48,6 @@ const server = http.createServer((req, res)=>{
             url.pathname = '/' + pathfile[pathfile.length - 2] + '/' + pathfile[pathfile.length - 1];
         } else {
             url.pathname = '/' + pathfile[pathfile.length - 1];
-            console.log("paso");
         }
         path += url.pathname;
         let ext = path.split('.')[2];

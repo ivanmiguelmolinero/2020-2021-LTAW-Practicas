@@ -5,16 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./CSS/main.css">
+    <script src="./JS/main.js"></script>
     <title>SW Shop</title>
 </head>
-<body>
+<body onload="main()">
     <div class="head">
         <a href="./main.html"><img src="./Imagenes/logotienda.png" alt="logo" id="logo"></a>
     </div>
     <div id="banner"><img src="./Imagenes/Banner.png" alt="Banner" class="img"></div>
     <div class="contenido">
-        <button id="text_product"><img src="./Imagenes/sable.png" alt="producto" id="producto"><br>Sable láser: 49.99€</button>
-        <button id="text_product"><img src="./Imagenes/X-wing.png" alt="producto" id="producto"><br>X-Wing: 57.500€</button>
+        <a href="./sable.html">
+            <button class="boton"><img src="./Imagenes/sable.png" alt="producto" class="producto" id="sable"><br>Sable láser: 499.99€</button>
+        </a>
+        <button class="boton"><img src="./Imagenes/X-wing.png" alt="producto" class="producto" id="XWing"><br>X-Wing: 57.500€</button>
+        <button class="boton"><img src="./Imagenes/blaster.png" alt="producto" class="producto" id="blaster"><br>Bláster: 100€</button>
     </div>
+    <audio src="blaster.mp3" id="audioblaster"></audio>
+    <audio src="sable.mp3" id="audiosable"></audio>
+    <audio src="XWing.mp3" id="audioXWing"></audio>
 </body>
 </html>
