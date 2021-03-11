@@ -74,6 +74,15 @@ body{
     font-family: 'Courier New', Courier, monospace;
 }
 
+#compraya{
+    height: 50px;
+}
+
+#compraya:hover{
+    cursor: pointer;
+    opacity: 75%;
+}
+
 .Relacionado{
     color: white;
     background-color: rgba(0, 0, 0, 0.548);
@@ -88,13 +97,19 @@ body{
     padding: 5px;
 }
 
-#producto_rel{
+.producto_rel{
     height: 125px;
     margin-top: 10px;
     margin-left: 25px;
 }
 
-#producto_rel:hover{
+.producto_rel:hover{
     opacity: 75%;
+}
+
+#compra_segura{
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 25px;
 }
 
