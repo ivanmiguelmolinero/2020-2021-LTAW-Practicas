@@ -12,6 +12,10 @@ function main() {
     var xwing = document.getElementById("XWing");
     var carrito =document.getElementById("carrito");
 
+    // Obtengo el banner
+    var banner = document.getElementById("img");
+    var section_banner = document.getElementById("banner");
+
     // Activamos la reproducción de los audios al pasar el mouse por encima
     sable.onmouseover = () => {
         audiosable.play();
@@ -29,5 +33,16 @@ function main() {
     carrito.onclick = () => {
         audiocarrito.play();
     }
+
+    // Activamos temporizador para que cada 10 segundos cambie la imagen del banner
+    let imagen2 = setInterval( () => {
+        banner.src = "./Imagenes/Banner.png";
+        section_banner.style.backgroundColor = "#1f1f1f";
+    }, 9000);
+
+    let imagen1 = setInterval( () => {
+        banner.src = "./Imagenes/banner2.jpg";
+        section_banner.style.backgroundColor = "black";
+    }, 19000)
 
 }
