@@ -35,14 +35,18 @@ function main() {
     }
 
     // Activamos temporizador para que cada 10 segundos cambie la imagen del banner
-    let imagen2 = setInterval( () => {
+    setTimeout( () =>{
         banner.src = "./Imagenes/Banner.png";
         section_banner.style.backgroundColor = "#1f1f1f";
-    }, 9000);
+        let imagen1 = setInterval( () => {
+            banner.src = "./Imagenes/Banner.png";
+            section_banner.style.backgroundColor = "#1f1f1f";
+        }, 20000);
+    }, 10000);
 
-    let imagen1 = setInterval( () => {
+    let imagen2 = setInterval( () => {
         banner.src = "./Imagenes/banner2.jpg";
         section_banner.style.backgroundColor = "black";
-    }, 19000)
+    }, 20000);
 
 }
