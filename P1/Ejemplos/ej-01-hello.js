@@ -6,3 +6,4 @@
 
 //-- Imprimir un mensaje en la consola
 console.log("¡Hola Mundo!");
+console.log("Prueba");
