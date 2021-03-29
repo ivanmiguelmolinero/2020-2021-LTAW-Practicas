@@ -4,7 +4,7 @@ const fs = require('fs');
 //-- Npmbre del fichero JSON a leer
 const FICHERO_JSON = "Ej-03-tienda-json-fich.json"
 
-//-- NOmbre del fichero JSON de salida
+//-- Nombre del fichero JSON de salida
 const FICHERO_JSON_OUT = "Ej-04-tienda-modificacion.json"
 
 //-- Leer el fichero JSON
