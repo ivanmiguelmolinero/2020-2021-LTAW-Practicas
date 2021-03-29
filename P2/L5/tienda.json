@@ -1,0 +1,44 @@
+[
+    {
+        "productos": [
+            {
+                "nombre": "Sable láser",
+                "descripcion": "Arma de los jedi",
+                "stock": 1
+            },
+            {
+                "nombre": "X-Wing",
+                "descripcion": "Nave de la rebelión",
+                "stock": 50
+            },
+            {
+                "nombre": "Blaster",
+                "descripcion": "Arma de fuego",
+                "stock": 100
+            }
+        ]
+    },
+    {
+        "usuarios": [
+            {
+                "username": "Skyguay",
+                "nombre": "Anakin Skywalker",
+                "email": "Anakin@ordenjedi.com"
+            },
+            {
+                "username": "Chulita",
+                "nombre": "Ahsoka Tano",
+                "email": "Ahsoka@ordenjedi.com"
+            }
+        ]
+    },
+    {
+        "pedidos": [
+            {
+                "usuario": "Skyguay",
+                "producto": "Sable láser",
+                "cantidad": 1
+            }
+        ]
+    }
+]
