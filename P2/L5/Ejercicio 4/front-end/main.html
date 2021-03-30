@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./CSS/main.css">
+    <script src="./JS/main.js"></script>
+    <title>SW Shop</title>
+</head>
+<body onload="main()">
+    <div class="header">
+        <p class="logo_alianza">
+            <img src="./Imagenes/alianza.png" alt="alianza" id="alianza">
+        </p>
+        <a href="./main.html"><img src="./Imagenes/logotienda.png" alt="logo" id="logo"></a>
+        <button class="btcarrito"><img src="./Imagenes/carrito.png" alt="carrito" id="carrito"></button>
+    </div>
+    <div id="banner"><img src="./Imagenes/banner2.jpg" alt="Banner" id="img"></div>
+    <div class="contenido">
+        <a href="./sable.html">
+            <button class="boton"><img src="./Imagenes/sable.png" alt="producto" class="producto" id="sable"><br>Sable láser: 100.000 Créditos</button>
+        </a>
+        <a href="./xwing.html">
+            <button class="boton"><img src="./Imagenes/X-wing.png" alt="producto" class="producto" id="XWing"><br>X-Wing: 149.999 Créditos</button>
+        </a>
+        <a href="./blaster.html">
+            <button class="boton"><img src="./Imagenes/blaster.png" alt="producto" class="producto" id="blaster"><br>Bláster: 500 Créditos</button>
+        </a>
+    </div>
+    <audio src="blaster.mp3" id="audioblaster"></audio>
+    <audio src="sable.mp3" id="audiosable"></audio>
+    <audio src="XWing.mp3" id="audioXWing"></audio>
+    <audio src="carrito.mp3" id="audiocarrito"></audio>
+</body>
+</html>
