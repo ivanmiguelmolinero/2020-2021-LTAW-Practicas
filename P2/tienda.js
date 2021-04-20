@@ -28,6 +28,8 @@ let user_exists = false;
 let username = '';
 let nombre = '';
 
+let nuevo_pedido = [];
+
 const server = http.createServer((req, res)=>{
     console.log("Petición recibida!");
 
@@ -69,6 +71,27 @@ const server = http.createServer((req, res)=>{
             }
         });
         console.log("PATH: ", path);
+    } else if (url.pathname == '/procesar_pedido') {
+        //-- Leer los parámetros
+        direccion = url.searchParams.get('dirección');
+        tarjeta = url.searchParams.get('número_tarjeta');
+        // Leer el fichero JSON
+        const  tienda_json = fs.readFileSync(FICHERO_JSON)
+        let info_tienda = JSON.parse(tienda_json);
+        nuevo_pedido = {
+            usuario: "Skyguay",
+            producto: "Sable láser",
+            cantidad: 1,
+            direccion: direccion,
+            tarjeta: tarjeta,
+        };
+        info_tienda[2].pedidos.push(nuevo_pedido);
+        //-- Convertir la variable a cadena JSON
+        let myJSON = JSON.stringify(info_tienda);
+        //-- Actualizar fichero JSON
+        fs.writeFileSync(FICHERO_JSON, myJSON);
+        //-- Redirigimos a la página de pedido realizado
+        path += '/form-compra-resp.html';
     } else {
         pathfile = url.pathname.split('/');
         folder.forEach((carpeta) =>{
@@ -105,6 +128,12 @@ const server = http.createServer((req, res)=>{
             } else if (path == './front-end/form1-resp.html') {
                 data = `${data}`.replace("USERNAME", username);
                 data = `${data}`.replace("NOMBRE", nombre);
+            } else if (path == './front-end/form-compra-resp.html') {
+                data = `${data}`.replace("USUARIO", nuevo_pedido.usuario);
+                data = `${data}`.replace("PRODUCTO", nuevo_pedido.producto);
+                data = `${data}`.replace("CANTIDAD", nuevo_pedido.cantidad);
+                data = `${data}`.replace("DIRECCIÓN", nuevo_pedido.direccion);
+                data = `${data}`.replace("TARJETA", nuevo_pedido.tarjeta);
             } else if ((path == './front-end/main.html') && (user_exists)) {
                 let sesion_iniciada = 'Bienvenido,<br>' + username; 
                 data = `${data}`.replace('<a href="./form1.html">Iniciar sesión</a>', sesion_iniciada);
