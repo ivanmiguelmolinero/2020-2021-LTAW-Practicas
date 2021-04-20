@@ -107,7 +107,7 @@ const server = http.createServer((req, res)=>{
                 data = `${data}`.replace("NOMBRE", nombre);
             } else if ((path == './front-end/main.html') && (user_exists)) {
                 let sesion_iniciada = 'Bienvenido,<br>' + username; 
-                data = `${data}`.replace("Iniciar sesión", sesion_iniciada);
+                data = `${data}`.replace('<a href="./form1.html">Iniciar sesión</a>', sesion_iniciada);
             }
             console.log("Leyendo archivo", path + "...");
             console.log("Lectura completada...");
