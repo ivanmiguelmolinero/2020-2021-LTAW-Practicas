@@ -30,6 +30,44 @@ let nombre = '';
 
 let nuevo_pedido = [];
 
+let cookie_carrito = 'carrito=';
+
+//-- Analizar la cookie y devolver el nombre del
+//-- usuario si existe, o null en caso contrario
+function get_user(req) {
+
+    //-- Leer la Cookie recibida
+    const cookie = req.headers.cookie;
+  
+    //-- Hay cookie
+    if (cookie) {
+      
+      //-- Obtener un array con todos los pares nombre-valor
+      let pares = cookie.split(";");
+      
+      //-- Variable para guardar el usuario
+      let user;
+  
+      //-- Recorrer todos los pares nombre-valor
+      pares.forEach((element, index) => {
+  
+        //-- Obtener los nombres y valores por separado
+        let [nombre, valor] = element.split('=');
+  
+        //-- Leer el usuario
+        //-- Solo si el nombre es 'user'
+        if (nombre.trim() === 'user') {
+          user = valor;
+        }
+      });
+  
+      //-- Si la variable user no está asignada
+      //-- se devuelve null
+      return user || null;
+    }
+  }
+
+
 const server = http.createServer((req, res)=>{
     console.log("Petición recibida!");
 
@@ -39,6 +77,8 @@ const server = http.createServer((req, res)=>{
     let path = "./front-end";
     let content_type = "text/html";
     let folder_exists = false;
+
+    let user = get_user(req);
 
     //-- Analizar el recurso
     //-- Construir el objeto url con la url de la solicitud
@@ -92,6 +132,13 @@ const server = http.createServer((req, res)=>{
         fs.writeFileSync(FICHERO_JSON, myJSON);
         //-- Redirigimos a la página de pedido realizado
         path += '/form-compra-resp.html';
+    } else if (url.pathname == '/compra_blaster') {
+        path += '/blaster.html';
+        cookie_carrito += ';blaster'
+        res.setHeader('Set-Cookie', 'carrito=blaster');
+    } else if (url.pathname == '/compra_sable') {
+        path += '/sable.html';
+        res.setHeader('Set-Cookie', 'carrito=sable;path=/sable.html');
     } else {
         pathfile = url.pathname.split('/');
         folder.forEach((carpeta) =>{
@@ -128,14 +175,15 @@ const server = http.createServer((req, res)=>{
             } else if (path == './front-end/form1-resp.html') {
                 data = `${data}`.replace("USERNAME", username);
                 data = `${data}`.replace("NOMBRE", nombre);
+                res.setHeader('Set-Cookie', "user=" + username);
             } else if (path == './front-end/form-compra-resp.html') {
                 data = `${data}`.replace("USUARIO", nuevo_pedido.usuario);
                 data = `${data}`.replace("PRODUCTO", nuevo_pedido.producto);
                 data = `${data}`.replace("CANTIDAD", nuevo_pedido.cantidad);
                 data = `${data}`.replace("DIRECCIÓN", nuevo_pedido.direccion);
                 data = `${data}`.replace("TARJETA", nuevo_pedido.tarjeta);
-            } else if ((path == './front-end/main.html') && (user_exists)) {
-                let sesion_iniciada = 'Bienvenido,<br>' + username; 
+            } else if ((path == './front-end/main.html') && (user)) {
+                let sesion_iniciada = 'Bienvenido,<br>' + user; 
                 data = `${data}`.replace('<a href="./form1.html">Iniciar sesión</a>', sesion_iniciada);
             }
             console.log("Leyendo archivo", path + "...");
