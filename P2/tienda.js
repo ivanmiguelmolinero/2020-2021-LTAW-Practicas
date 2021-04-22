@@ -24,20 +24,44 @@ const type = {
 
 const folder = ['CSS', 'Imagenes', 'JS'];
 
-let user_exists = false;
+let existe_carrito = false;
 let username = '';
 let nombre = '';
 
+let cookie;
+
 let nuevo_pedido = [];
 
-let cookie_carrito = 'carrito=';
+function add_to_buy(req, res, producto) {
+    cookie = req.headers.cookie;
+
+    if (cookie) {
+        //-- Obtener un array con todos los pares nombre-valor
+        let pares = cookie.split(";");
+        
+        //-- Recorrer todos los pares nombre-valor
+        pares.forEach((element, index) => {
+            
+            //-- Obtener los nombres y valores por separado
+            let [nombre, valor] = element.split('=');
+    
+            //-- Leer el usuario
+            //-- Solo si el nombre es 'user'
+            if (nombre.trim() === 'carrito') {
+                console.log('COOOOOOOOOOOOOOOOOOOOOOOOOOKIE: ' + element);
+                console.log('POOOOOOOOOOOOOOOONGOOOOOOOOOOOOOOOOOOOOO: ' + cookie + ',' + producto);
+                res.setHeader('Set-Cookie', element + ',' + producto);
+            }
+        });
+    }
+}
 
 //-- Analizar la cookie y devolver el nombre del
 //-- usuario si existe, o null en caso contrario
 function get_user(req) {
 
     //-- Leer la Cookie recibida
-    const cookie = req.headers.cookie;
+    cookie = req.headers.cookie;
   
     //-- Hay cookie
     if (cookie) {
@@ -65,8 +89,67 @@ function get_user(req) {
       //-- se devuelve null
       return user || null;
     }
-  }
+}
 
+function get_carrito(req) {
+    //-- Leer la Cookie recibida
+    cookie = req.headers.cookie;
+  
+    //-- Hay cookie
+    if (cookie) {
+      
+      //-- Obtener un array con todos los pares nombre-valor
+      let pares = cookie.split(";");
+      
+      //-- Variable para guardar el usuario
+      let carrito;
+      let sable = '';
+      let num_sables = 0;
+      let blaster = '';
+      let num_blaster = 0;
+      let xwing = '';
+      let num_xwing = 0;
+  
+      //-- Recorrer todos los pares nombre-valor
+      pares.forEach((element, index) => {
+  
+        //-- Obtener los nombres y valores por separado
+        let [nombre, valor] = element.split('=');
+  
+        //-- Leer el usuario
+        //-- Solo si el nombre es 'user'
+        if (nombre.trim() === 'carrito') {
+          productos = valor.split(',');
+          productos.forEach((producto) => {
+            if (producto == 'sable') {
+                if (num_sables == 0) {
+                    sable = 'Sable láser';
+                }
+                num_sables += 1; 
+            } else if (producto == 'blaster') {
+                if (num_blaster== 0) {
+                    blaster = 'Bláster';
+                }
+                num_blaster += 1;
+            } else if (producto == 'xwing') {
+                if (num_xwing == 0) {
+                    xwing = 'X-Wing';
+                }
+                num_xwing += 1;
+            }
+          });
+          sable += ' x' + num_sables;
+          blaster += ' x' + num_blaster;
+          xwing += ' x' + num_xwing;
+          carrito = sable + '<br>' + blaster + '<br>' + xwing;
+        }
+      });
+  
+      //-- Si la variable user no está asignada
+      //-- se devuelve null
+      return carrito || null;
+    }
+}
 
 const server = http.createServer((req, res)=>{
     console.log("Petición recibida!");
@@ -119,8 +202,8 @@ const server = http.createServer((req, res)=>{
         const  tienda_json = fs.readFileSync(FICHERO_JSON)
         let info_tienda = JSON.parse(tienda_json);
         nuevo_pedido = {
-            usuario: "Skyguay",
-            producto: "Sable láser",
+            usuario: get_user(req),
+            producto: get_carrito(req),
             cantidad: 1,
             direccion: direccion,
             tarjeta: tarjeta,
@@ -134,11 +217,28 @@ const server = http.createServer((req, res)=>{
         path += '/form-compra-resp.html';
     } else if (url.pathname == '/compra_blaster') {
         path += '/blaster.html';
-        cookie_carrito += ';blaster'
-        res.setHeader('Set-Cookie', 'carrito=blaster');
+        if (existe_carrito) {
+            add_to_buy(req, res, 'blaster');
+        } else {
+            res.setHeader('Set-Cookie', 'carrito=blaster');
+            existe_carrito = true;
+        }
     } else if (url.pathname == '/compra_sable') {
         path += '/sable.html';
-        res.setHeader('Set-Cookie', 'carrito=sable;path=/sable.html');
+        if (existe_carrito) {
+            add_to_buy(req, res, 'sable');
+        } else {
+            res.setHeader('Set-Cookie', 'carrito=sable');
+            existe_carrito = true;
+        }
+    } else if (url.pathname == '/compra_xwing') {
+        path += '/xwing.html';
+        if (existe_carrito) {
+            add_to_buy(req, res, 'xwing');
+        } else {
+            res.setHeader('Set-Cookie', 'carrito=xwing');
+            existe_carrito = true;
+        }
     } else {
         pathfile = url.pathname.split('/');
         folder.forEach((carpeta) =>{
@@ -179,11 +279,10 @@ const server = http.createServer((req, res)=>{
             } else if (path == './front-end/form-compra-resp.html') {
                 data = `${data}`.replace("USUARIO", nuevo_pedido.usuario);
                 data = `${data}`.replace("PRODUCTO", nuevo_pedido.producto);
-                data = `${data}`.replace("CANTIDAD", nuevo_pedido.cantidad);
                 data = `${data}`.replace("DIRECCIÓN", nuevo_pedido.direccion);
                 data = `${data}`.replace("TARJETA", nuevo_pedido.tarjeta);
             } else if ((path == './front-end/main.html') && (user)) {
-                let sesion_iniciada = 'Bienvenido,<br>' + user; 
+                let sesion_iniciada = 'Bienvenido/a,<br>' + user; 
                 data = `${data}`.replace('<a href="./form1.html">Iniciar sesión</a>', sesion_iniciada);
             }
             console.log("Leyendo archivo", path + "...");
