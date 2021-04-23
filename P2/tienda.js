@@ -15,7 +15,7 @@ const type = {
     "plain": "text/plain",
     "html": "text/html",
     "css": "text/css",
-    "js": "text/javascript",
+    "js": "application/javascript",
     "gif": "image/gif",
     "jpg": "image/jpg",
     "png": "image/png",
@@ -48,8 +48,6 @@ function add_to_buy(req, res, producto) {
             //-- Leer el usuario
             //-- Solo si el nombre es 'user'
             if (nombre.trim() === 'carrito') {
-                console.log('COOOOOOOOOOOOOOOOOOOOOOOOOOKIE: ' + element);
-                console.log('POOOOOOOOOOOOOOOONGOOOOOOOOOOOOOOOOOOOOO: ' + cookie + ',' + producto);
                 res.setHeader('Set-Cookie', element + ',' + producto);
             }
         });
