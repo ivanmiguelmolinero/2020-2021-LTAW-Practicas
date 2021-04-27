@@ -298,7 +298,10 @@ const server = http.createServer((req, res)=>{
                 data = `${data}`.replace("PRODUCTO", nuevo_pedido.producto);
                 data = `${data}`.replace("DIRECCIÓN", nuevo_pedido.direccion);
                 data = `${data}`.replace("TARJETA", nuevo_pedido.tarjeta);
-            } else if ((path == './front-end/main.html') && (user)) {
+            } else if (((path == './front-end/main.html') ||
+                         (path == './front-end/sable.html') ||
+                         (path == './front-end/xwing.html') ||
+                         (path == './front-end/blaster.html')) && (user)) {
                 let sesion_iniciada = 'Bienvenido/a,<br>' + user; 
                 data = `${data}`.replace('<a href="./form1.html">Iniciar sesión</a>', sesion_iniciada);
             } else if (path == './front-end/form-compra.html') {
