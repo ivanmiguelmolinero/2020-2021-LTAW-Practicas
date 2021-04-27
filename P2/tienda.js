@@ -24,6 +24,8 @@ const type = {
 
 const folder = ['CSS', 'Imagenes', 'JS'];
 
+const form_compra = ''
+
 let existe_carrito = false;
 let username = '';
 let nombre = '';
@@ -136,9 +138,15 @@ function get_carrito(req) {
                 num_xwing += 1;
             }
           });
-          sable += ' x' + num_sables;
-          blaster += ' x' + num_blaster;
-          xwing += ' x' + num_xwing;
+          if (num_sables != 0) {
+            sable += ' x' + num_sables;
+          }
+          if (num_blaster != 0) {
+            blaster += ' x' + num_blaster;
+          }
+          if (num_xwing != 0) {
+            xwing += ' x' + num_xwing;
+          }
           carrito = sable + '<br>' + blaster + '<br>' + xwing;
         }
       });
@@ -215,27 +223,33 @@ const server = http.createServer((req, res)=>{
         path += '/form-compra-resp.html';
     } else if (url.pathname == '/compra_blaster') {
         path += '/blaster.html';
-        if (existe_carrito) {
-            add_to_buy(req, res, 'blaster');
-        } else {
-            res.setHeader('Set-Cookie', 'carrito=blaster');
-            existe_carrito = true;
+        if (user){
+            if (existe_carrito) {
+                add_to_buy(req, res, 'blaster');
+            } else {
+                res.setHeader('Set-Cookie', 'carrito=blaster');
+                existe_carrito = true;
+            }
         }
     } else if (url.pathname == '/compra_sable') {
         path += '/sable.html';
-        if (existe_carrito) {
-            add_to_buy(req, res, 'sable');
-        } else {
-            res.setHeader('Set-Cookie', 'carrito=sable');
-            existe_carrito = true;
+        if (user) {
+            if (existe_carrito) {
+                add_to_buy(req, res, 'sable');
+            } else {
+                res.setHeader('Set-Cookie', 'carrito=sable');
+                existe_carrito = true;
+            }
         }
     } else if (url.pathname == '/compra_xwing') {
         path += '/xwing.html';
-        if (existe_carrito) {
-            add_to_buy(req, res, 'xwing');
-        } else {
-            res.setHeader('Set-Cookie', 'carrito=xwing');
-            existe_carrito = true;
+        if (user) {
+            if (existe_carrito) {
+                add_to_buy(req, res, 'xwing');
+            } else {
+                res.setHeader('Set-Cookie', 'carrito=xwing');
+                existe_carrito = true;
+            }
         }
     } else {
         pathfile = url.pathname.split('/');
@@ -282,6 +296,12 @@ const server = http.createServer((req, res)=>{
             } else if ((path == './front-end/main.html') && (user)) {
                 let sesion_iniciada = 'Bienvenido/a,<br>' + user; 
                 data = `${data}`.replace('<a href="./form1.html">Iniciar sesión</a>', sesion_iniciada);
+            } else if (path == './front-end/form-compra.html') {
+                if (user) {
+                    data = `${data}`.replace("PRODUCTOS", get_carrito(req));
+                } else {
+                    data = `${data}`.replace(form_compra, get_carrito(req));
+                }
             }
             console.log("Leyendo archivo", path + "...");
             console.log("Lectura completada...");
@@ -297,7 +317,7 @@ const server = http.createServer((req, res)=>{
             res.setHeader('Content-Type', 'text/html');
             res.write(data);
             res.end()
-        }
+        }   
     })
     
 });

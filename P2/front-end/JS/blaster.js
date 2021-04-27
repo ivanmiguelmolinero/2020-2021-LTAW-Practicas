@@ -24,8 +24,4 @@ function main() {
     carrito.onclick = () => {
         audiocarrito.play();
     }
-
-    compra.onclick = () => {
-        audiocompra.play();
-    }
 }
