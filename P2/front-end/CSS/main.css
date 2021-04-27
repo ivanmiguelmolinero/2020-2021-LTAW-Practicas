@@ -23,6 +23,15 @@ body{
     margin-top: 5px;
 }
 
+#caja_busqueda{
+    position: absolute;
+    margin-left: -275px;
+    margin-top: 40px;
+    width: 200px;
+    height: 25px;
+    border-radius: 5px;
+}
+
 #logo{
     height: 100px;
     cursor: pointer;
