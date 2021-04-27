@@ -24,8 +24,6 @@ const type = {
 
 const folder = ['CSS', 'Imagenes', 'JS'];
 
-const form_compra = ''
-
 let existe_carrito = false;
 let username = '';
 let nombre = '';
@@ -251,6 +249,13 @@ const server = http.createServer((req, res)=>{
                 existe_carrito = true;
             }
         }
+    } else if (url.pathname == '/form-compra.html') {
+        if (user) {
+            path += url.pathname;
+        } else {
+            console.log("No ha iniciado sesión");
+            path += '/form-compra-error.html';
+        }
     } else {
         pathfile = url.pathname.split('/');
         folder.forEach((carpeta) =>{
@@ -299,8 +304,6 @@ const server = http.createServer((req, res)=>{
             } else if (path == './front-end/form-compra.html') {
                 if (user) {
                     data = `${data}`.replace("PRODUCTOS", get_carrito(req));
-                } else {
-                    data = `${data}`.replace(form_compra, get_carrito(req));
                 }
             }
             console.log("Leyendo archivo", path + "...");
