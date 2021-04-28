@@ -23,12 +23,39 @@ body{
     margin-top: 5px;
 }
 
+form{
+    margin-left: -500px;
+}
+
 #caja_busqueda{
     position: absolute;
     margin-left: -275px;
     margin-top: 40px;
     width: 200px;
     height: 25px;
+    border-radius: 5px;
+    border-color: gold;
+    border-width: 3px;
+}
+
+#lupa{
+    position: absolute;
+    height: 30px;
+    margin-left: -60px;
+    margin-top: 40px;
+}
+
+#lupa:hover {
+    height: 35px;
+}
+
+#display{
+    position: absolute;
+    margin-top: 75px;
+    margin-left: 738px;
+    padding-right: 140px;
+    background-color: white;
+    color: black;
     border-radius: 5px;
 }
 

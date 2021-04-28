@@ -29,6 +29,7 @@ let username = '';
 let nombre = '';
 
 let cookie;
+let busqueda;
 
 let nuevo_pedido = [];
 
@@ -164,6 +165,8 @@ const server = http.createServer((req, res)=>{
     let path = "./front-end";
     let content_type = "text/html";
     let folder_exists = false;
+    let param1;
+    let content;
 
     let user = get_user(req);
 
@@ -182,6 +185,47 @@ const server = http.createServer((req, res)=>{
         let info_tienda = JSON.parse(tienda_json);
         info_productos = info_tienda[0].productos;
         path += '/productos.html';
+        //-- Leer los parámetros
+        param1 = url.searchParams.get('param1');
+        if (param1){
+            console.log("HAY BÚSQUEDA!");
+            console.log(info_productos);
+            param1 = param1.toUpperCase();
+
+            console.log("  Param: " +  param1);
+
+            let productos = [];
+            let result = [];
+
+            info_productos.forEach((product) => {
+                productos.push(product.nombre);
+            });
+
+            for (let prod of productos) {
+
+                //-- Pasar a mayúsculas
+                prodU = prod.toUpperCase();
+
+                //-- Si el producto comienza por lo indicado en el parametro
+                //-- meter este producto en el array de resultados
+                if (prodU.startsWith(param1)) {
+                    result.push(prod);
+                }
+                
+            }
+            console.log(result);
+            busqueda = result;
+            content = JSON.stringify(result);
+            content_type = "application/json";
+        }
+    } else if (url.pathname == '/buscar') {
+        if (busqueda == 'Sable láser') {
+            path += '/sable.html';
+        } else if (busqueda == 'X-Wing'){
+            path += '/xwing.html';
+        } else if (busqueda == 'Blaster') {
+            path += '/blaster.html';
+        }
     } else if (url.pathname == '/procesar') {
         path += '/form1-resp-error.html'
         //-- Leer los parámetros
@@ -281,14 +325,19 @@ const server = http.createServer((req, res)=>{
     fs.readFile(path, (err, data) => {
         if (err == null) {
             if (path == './front-end/productos.html'){
-                let productos = '';
-                info_productos.forEach((element, index) =>{
+                if (param1) {
+                    console.log("HAY BUSQUEDAAAAAAAAAAAAAAAAA");
+                    data = content;
+                } else {
+                    let productos = '';
+                    info_productos.forEach((element, index) =>{
                     productos += ('Producto ' + (index +1) + ': ' + element["nombre"] + '<br>'
                                     + 'Descripción: ' + element["descripcion"] + '<br>'
                                     + 'Stock: ' + element["stock"] + '<br>'
                                     + 'Precio: ' + element["precio"] + '<br><br>');
-                });
-                data = PRODUCTOS_HTML.replace('Productos', productos);
+                    });
+                    data = PRODUCTOS_HTML.replace('Productos', productos);
+                }  
             } else if (path == './front-end/form1-resp.html') {
                 data = `${data}`.replace("USERNAME", username);
                 data = `${data}`.replace("NOMBRE", nombre);
