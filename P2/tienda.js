@@ -100,7 +100,7 @@ function get_carrito(req) {
       //-- Obtener un array con todos los pares nombre-valor
       let pares = cookie.split(";");
       
-      //-- Variable para guardar el usuario
+      //-- Variable para guardar el carrito
       let carrito;
       let sable = '';
       let num_sables = 0;
@@ -188,7 +188,6 @@ const server = http.createServer((req, res)=>{
         //-- Leer los parámetros
         param1 = url.searchParams.get('param1');
         if (param1){
-            console.log("HAY BÚSQUEDA!");
             console.log(info_productos);
             param1 = param1.toUpperCase();
 
@@ -265,6 +264,7 @@ const server = http.createServer((req, res)=>{
         path += '/form-compra-resp.html';
     } else if (url.pathname == '/compra_blaster') {
         path += '/blaster.html';
+        user = get_user(req);
         if (user){
             if (existe_carrito) {
                 add_to_buy(req, res, 'blaster');
@@ -275,6 +275,7 @@ const server = http.createServer((req, res)=>{
         }
     } else if (url.pathname == '/compra_sable') {
         path += '/sable.html';
+        user = get_user(req);
         if (user) {
             if (existe_carrito) {
                 add_to_buy(req, res, 'sable');
@@ -285,6 +286,7 @@ const server = http.createServer((req, res)=>{
         }
     } else if (url.pathname == '/compra_xwing') {
         path += '/xwing.html';
+        user = get_user(req);
         if (user) {
             if (existe_carrito) {
                 add_to_buy(req, res, 'xwing');
@@ -294,6 +296,7 @@ const server = http.createServer((req, res)=>{
             }
         }
     } else if (url.pathname == '/form-compra.html') {
+        user = get_user(req);
         if (user) {
             path += url.pathname;
         } else {
@@ -323,10 +326,10 @@ const server = http.createServer((req, res)=>{
     res.statusMessage = code_msg;
 
     fs.readFile(path, (err, data) => {
+        user = get_user(req);
         if (err == null) {
             if (path == './front-end/productos.html'){
                 if (param1) {
-                    console.log("HAY BUSQUEDAAAAAAAAAAAAAAAAA");
                     data = content;
                 } else {
                     let productos = '';
