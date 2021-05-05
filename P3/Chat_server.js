@@ -73,7 +73,7 @@ io.on('connect', (socket) => {
         } else if (msg == '/date') {
             socket.send(hoy.toDateString());
         } else if (msg == '/music') {
-            socket.broadcast.emit('message', 'music');
+            socket.send('music');
         } else if (msg == '/img') {
             io.send('img');
         } else {
