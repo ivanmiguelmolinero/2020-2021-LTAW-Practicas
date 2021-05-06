@@ -7,7 +7,13 @@ const colors = require('colors');
 const PUERTO = 8080;
 
 const msg_bienvenida = 'Un nuevo padawan ha entrado al templo';
-const command_list = '/help, /list, /hello, /date, /music, /img';
+const msg_despedida = 'Un padawan ha abandonado el templo (no es Ahsoka)';
+const command_list = '/help: Muestra la lista de comandos<br>'
+                     + '/list: Muestra el número de usuarios conectados<br>'
+                     + '/hello: El servidor te saluda<br>'
+                     + '/date: Te muestra la fecha actual<br>'
+                     + '/music: Pone música de fondo al usuario que lo activa<br>'
+                     + '/img: Envía una imagen';
 let num_users = 0;
 const tiempoTranscurrido = Date.now();
 const hoy = new Date(tiempoTranscurrido);
@@ -54,6 +60,7 @@ io.on('connect', (socket) => {
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
+    socket.broadcast.emit('message', msg_despedida);
     //-- Disminiumos el número de usuarios
     num_users -= 1;
   });  
@@ -65,7 +72,7 @@ io.on('connect', (socket) => {
     if (msg.startsWith('/')) {
         console.log('COMANDO RECIBIDO'.green);
         if (msg == '/help') {
-            socket.send('Lista de comandos: ' + command_list);
+            socket.send('Lista de comandos:<br>' + command_list);
         } else if (msg == '/list') {
             socket.send('Número de usuarios: ' + num_users);
         } else if (msg == '/hello') {

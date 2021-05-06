@@ -18,7 +18,7 @@ socket.on("message", (msg)=>{
     display.innerHTML += '<img src="./icono.png" alt="Imagen recibida">';
     audio_msg.play();
   } else {
-    display.innerHTML += '<p style="color:blue">' + msg + '</p>';
+    display.innerHTML += '<p>' + msg + '</p>';
     if (msg != msg_writing) {
       audio_msg.play();
     }
