@@ -1,6 +1,6 @@
 const ip = require('ip');
 const electron = require('electron');
-const QRCode = require('qrcode')
+const QRCode = require('qrcode');
 
 console.log("Hola desde el proceso de la web...");
 
@@ -22,12 +22,15 @@ info2.textContent = process.versions.chrome;
 info3.textContent = process.versions.electron;
 info_users.textContent = 0;
 
+// Creamos el código QR
+const src = 'http://' + ip.address() + ':' + '8080';
+QRCode.toDataURL(src, function (err, url) {
+    qr.src = url;
+});
+
 electron.ipcRenderer.on('print-ip', (event, message) => {
     console.log("Recibido: " + message);
     info4.innerHTML = message;
-    QRCode.toDataURL(message, function (err, url) {
-        qr.src = url;
-    });
 });
 
 electron.ipcRenderer.on('print-users', (event, message) => {
