@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Permitir sólo scripts y ficheros de la máquina local -->
+    <!-- Con esto se elimina el aviso de seguridad: Insecure Content-Security-Policy -->
+    <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; default-src 'self';" />
+
+    <!-- Hoja de estilo de la interfaz -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Cargar el proceso asociado a esta página -->
+    <script src="index.js" defer></script>
+
+    <title>Chat Server</title>
+</head>
+<body>
+    <h1>Home Star Chat (Server)</h1>
+
+    <hr>
+    <h2>Información:</h2>
+    <ul>
+        <li>Versión de Node: <span id="info1" class="blue"></span> </li>
+        <li>Versión de Chrome: <span id="info2" class="blue"></span></li>
+        <li>Versión de Electron: <span id="info3" class="blue"></span></li>
+        <li>Dirección IP: <span id="info4" class="blue"></span></li>
+        <img src="" alt="Código QR" id="qr">
+    </ul>
+
+    <hr>
+    <li>Número usuarios conectados: <span id="info_users" class="blue"></span></li>
+    <hr>
+    <button id="button_test">Enviar mensaje de prueba</button>
+    <hr>
+    <h2>Mensajes: <span id="mensajes" class="blue"></span></h2>
+</body>
+</html>
