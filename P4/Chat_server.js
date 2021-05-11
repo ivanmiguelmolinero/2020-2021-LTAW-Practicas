@@ -42,8 +42,7 @@ let win = null;
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-    chat = fs.readFileSync('./client/Chat_client.html', 'utf-8');
-    res.send(chat);
+    res.send('Bienvenido a mi chat!!!' + '<p><a href="/client/Chat_client.html">Chat</a></p>');
 });
 
 //-- Esto es necesario para que el servidor le envíe al cliente la
