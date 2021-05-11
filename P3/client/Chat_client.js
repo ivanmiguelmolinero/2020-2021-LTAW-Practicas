@@ -12,10 +12,11 @@ let writing = false;
 const socket = io();
 
 socket.on("message", (msg)=>{
+  display.scrollTop = display.scrollHeight;
   if (msg == 'music') {
     music.play();
   } else if (msg == 'img') {
-    display.innerHTML += '<img src="./icono.png" alt="Imagen recibida">';
+    display.innerHTML += '<img src="./icono.png" alt="Imagen recibida"><br>';
     audio_msg.play();
   } else {
     display.innerHTML += '<p>' + msg + '</p>';
@@ -23,6 +24,7 @@ socket.on("message", (msg)=>{
       audio_msg.play();
     }
   }
+  display.scrollTop = display.scrollHeight;
   
 });
 //-- Al escribir se manda a los demás que un usuario está escribiendo
