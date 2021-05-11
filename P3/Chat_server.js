@@ -3,6 +3,7 @@ const socket = require('socket.io');
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
+const fs = require('fs');
 
 const PUERTO = 8080;
 
@@ -33,7 +34,8 @@ const io = socket(server);
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-  res.send('Bienvenido a mi aplicación Web!!!' + '<p><a href="/Chat_client.html">Entrar al chat</a></p>');
+    chat = fs.readFileSync('./client/Chat_client.html', 'utf-8');
+    res.send(chat);
 });
 
 //-- Esto es necesario para que el servidor le envíe al cliente la
