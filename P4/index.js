@@ -11,6 +11,7 @@ const info3 = document.getElementById("info3");
 const info4 = document.getElementById("info4");
 const info_users = document.getElementById("info_users");
 const mensajes = document.getElementById("mensajes");
+const mensaje = document.getElementById("mensaje");
 const button_test = document.getElementById("button_test");
 const qr = document.getElementById("qr");
 
@@ -41,6 +42,7 @@ electron.ipcRenderer.on('print-users', (event, message) => {
 electron.ipcRenderer.on('print-msg', (event, message) => {
     console.log("Recibido: " + message);
     mensajes.innerHTML += message + '<br>';
+    mensaje.scrollTop = mensaje.scrollHeight;
 });
 
 button_test.onclick = () => {

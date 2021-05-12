@@ -21,20 +21,21 @@
     <h1>Home Star Chat (Server)</h1>
 
     <hr>
-    <h2>Información:</h2>
-    <ul>
-        <li>Versión de Node: <span id="info1" class="blue"></span> </li>
-        <li>Versión de Chrome: <span id="info2" class="blue"></span></li>
-        <li>Versión de Electron: <span id="info3" class="blue"></span></li>
-        <li>Dirección IP: <span id="info4" class="blue"></span></li>
+    <div class="left">
+        <p>Versión de Node: <span id="info1" class="blue"></span> </p>
+        <p>Versión de Chrome: <span id="info2" class="blue"></span></p>
+        <p>Versión de Electron: <span id="info3" class="blue"></span></p>
+        <p>Dirección IP: <span id="info4" class="blue"></span></p>
         <img src="" alt="Código QR" id="qr">
-    </ul>
+    </div>
 
-    <hr>
-    <li>Número usuarios conectados: <span id="info_users" class="blue"></span></li>
-    <hr>
-    <button id="button_test">Enviar mensaje de prueba</button>
-    <hr>
-    <h2>Mensajes: <span id="mensajes" class="blue"></span></h2>
+    <div class="right" id="mensaje">
+        <p>Mensajes: <br><br><span id="mensajes" class="blue"></span></p>
+    </div>
+
+    <div class="bottom">
+        <p>Número usuarios conectados: <span id="info_users" class="blue"></span></p>
+        <button id="button_test">Enviar mensaje de prueba</button>
+    </div>
 </body>
 </html>

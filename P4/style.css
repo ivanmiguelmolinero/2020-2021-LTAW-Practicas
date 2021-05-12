@@ -1,16 +1,101 @@
+@font-face{
+  font-family: star font;
+  src: url(./star-jedi_[allfont.es].ttf);
+}
+
+@font-face {
+  font-family: vigilance font;
+  src: url(./vigilanc.ttf);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body{
+  background-image: url(./fondo.jpg);
+  background-position: center;
+  background-size: auto;
+  color: aliceblue;
+}
+
 h1 {
     width: 93%;
     padding: 20px;
-    background-color: lightgreen;
+    background-color: rgba(255, 255, 255, 0.205);
+    border-style: ridge;
     border-radius: 10px;
+    border-width: 7px;
     text-align: center;
+    font-family: star font;
+    color: yellow;
   }
 
-.blue {
-    color: blue;
+div{
+  background-color: rgba(255, 255, 255, 0.205);
+  border-style: ridge;
+  border-radius: 10px;
+  border-width: 7px;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-  #display {
-      border: 2px solid lightblue;
+.left{
+  text-align: center;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 2%;
+  width: 40%;
+  position: relative;
+  float: left;
+  height: auto;
+}
+
+.right{
+  text-align: center;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  margin-left: 10px;
+  width: 40%;
+  margin-left: 53%;
+  position: absolute;
+  float: left;
+  height: 355px;
+  overflow: scroll;
+}
+
+.bottom{
+  margin-top: 430px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.blue {
+    color: rgb(255, 251, 0);
+}
+
+button {
+  width: 300px;
+  height: 40px;
+  border-radius: 3em;
+  border-color: #1abc9c;
+  color: #fff;
+  background-image: -webkit-linear-gradient(left, rgba(26, 188, 156, 0.6), rgba(26, 188, 156, 0.6) 5%, #1abc9c 5%, #1abc9c 10%, rgba(26, 188, 156, 0.6) 10%, rgba(26, 188, 156, 0.6) 15%, #1abc9c 15%, #1abc9c 20%, rgba(26, 188, 156, 0.6) 20%, rgba(26, 188, 156, 0.6) 25%, #1abc9c 25%, #1abc9c 30%, rgba(26, 188, 156, 0.6) 30%, rgba(26, 188, 156, 0.6) 35%, #1abc9c 35%, #1abc9c 40%, rgba(26, 188, 156, 0.6) 40%, rgba(26, 188, 156, 0.6) 45%, #1abc9c 45%, #1abc9c 50%, rgba(26, 188, 156, 0.6) 50%, rgba(26, 188, 156, 0.6) 55%, #1abc9c 55%, #1abc9c 60%, rgba(26, 188, 156, 0.6) 60%, rgba(26, 188, 156, 0.6) 65%, #1abc9c 65%, #1abc9c 70%, rgba(26, 188, 156, 0.6) 70%, rgba(26, 188, 156, 0.6) 75%, #1abc9c 75%, #1abc9c 80%, rgba(26, 188, 156, 0.6) 80%, rgba(26, 188, 156, 0.6) 85%, #1abc9c 85%, #1abc9c 90%, rgba(26, 188, 156, 0.6) 90%, rgba(26, 188, 156, 0.6) 95%, #1abc9c 95%, #1abc9c 100%);
+  background-image: linear-gradient(to right, rgba(26, 188, 156, 0.6), rgba(26, 188, 156, 0.6) 5%, #1abc9c 5%, #1abc9c 10%, rgba(26, 188, 156, 0.6) 10%, rgba(26, 188, 156, 0.6) 15%, #1abc9c 15%, #1abc9c 20%, rgba(26, 188, 156, 0.6) 20%, rgba(26, 188, 156, 0.6) 25%, #1abc9c 25%, #1abc9c 30%, rgba(26, 188, 156, 0.6) 30%, rgba(26, 188, 156, 0.6) 35%, #1abc9c 35%, #1abc9c 40%, rgba(26, 188, 156, 0.6) 40%, rgba(26, 188, 156, 0.6) 45%, #1abc9c 45%, #1abc9c 50%, rgba(26, 188, 156, 0.6) 50%, rgba(26, 188, 156, 0.6) 55%, #1abc9c 55%, #1abc9c 60%, rgba(26, 188, 156, 0.6) 60%, rgba(26, 188, 156, 0.6) 65%, #1abc9c 65%, #1abc9c 70%, rgba(26, 188, 156, 0.6) 70%, rgba(26, 188, 156, 0.6) 75%, #1abc9c 75%, #1abc9c 80%, rgba(26, 188, 156, 0.6) 80%, rgba(26, 188, 156, 0.6) 85%, #1abc9c 85%, #1abc9c 90%, rgba(26, 188, 156, 0.6) 90%, rgba(26, 188, 156, 0.6) 95%, #1abc9c 95%, #1abc9c 100%);
+  background-position: 0 0;
+  background-size: 100%;
+  -webkit-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
+}
+button:hover {
+  background-position: 100px;
+}
+
+  #mensajes {
       padding: 10px;
+      text-align: center;
+      font-family: vigilance font;
+      color: greenyellow;
   }
