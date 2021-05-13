@@ -350,6 +350,7 @@ const server = http.createServer((req, res)=>{
                 data = `${data}`.replace("PRODUCTO", nuevo_pedido.producto);
                 data = `${data}`.replace("DIRECCIÓN", nuevo_pedido.direccion);
                 data = `${data}`.replace("TARJETA", nuevo_pedido.tarjeta);
+                res.setHeader('Set-Cookie', 'carrito=');
             } else if (((path == './front-end/main.html') ||
                          (path == './front-end/sable.html') ||
                          (path == './front-end/xwing.html') ||
