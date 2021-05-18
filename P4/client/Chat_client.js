@@ -12,7 +12,6 @@ let writing = false;
 const socket = io();
 
 socket.on("message", (msg)=>{
-  display.scrollTop = display.scrollHeight;
   if (msg == 'music') {
     music.play();
   } else if (msg == 'img') {
